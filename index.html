@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Casa Vista Puerto Rico — Ocean-view Vacation Home</title>
+        <meta name="description" content="Relax at Casa Vista Puerto Rico: a bright, modern 3-bedroom with ocean views, fast Wi-Fi, and an easy walk to beaches & restaurants. Book on Airbnb." />
+        <meta name="theme-color" content="#0ea5e9" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="icon" href="images/pr_logo.jpg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+        <style>
+            /* ================== THEME ================== */
+            :root {
+                --brand: #0ea5e9;
+                --brand-dark: #0369a1;
+                --ink: #0f172a;
+                --muted: #64748b;
+                --bg: #ffffff;
+                --bg-soft: #f8fafc;
+                --radius: 18px;
+                --shadow: 0 10px 30px rgba(2, 132, 199, 0.15);
+
+                /* optional anchor offset; JS can update this later */
+                --header-h: 72px;
+            }
+            /* smooth in-page link offset (works even without JS) */
+            [id] {
+                scroll-margin-top: calc(var(--header-h) + 8px);
+            }
+
+            /* ================== BASE ================== */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                font-family: Inter, system-ui, sans-serif;
+                color: var(--ink);
+                background: var(--bg);
+                line-height: 1.6;
+            }
+            a {
+                color: var(--brand);
+                text-decoration: none;
+            }
+            img {
+                max-width: 100%;
+                display: block;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            img:hover {
+                transform: scale(1.02);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+            .container {
+                width: min(1100px, 92%);
+                margin-inline: auto;
+            }
+            .btn {
+                display: inline-block;
+                background: var(--brand);
+                color: #fff;
+                padding: 0.9rem 1.1rem;
+                border-radius: 12px;
+                font-weight: 700;
+                box-shadow: var(--shadow);
+            }
+            .btn:hover {
+                background: var(--brand-dark);
+            }
+            .btn-lg {
+                padding: 1rem 1.25rem;
+                font-size: 1.05rem;
+                border-radius: 14px;
+                font-weight: 800;
+                box-shadow: 0 12px 30px rgba(2, 132, 199, 0.25);
+            }
+
+            /* ================== HEADER / NAV ================== */
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: saturate(160%) blur(10px);
+                border-bottom: 1px solid #e2e8f0;
+                box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            }
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.6rem;
+                padding-block: 0.6rem; /* header height comes from padding/content */
+            }
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 0.55rem;
+                font-weight: 800;
+                color: var(--ink);
+            }
+            .brand img {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                object-fit: cover;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            }
+            .brand span {
+                font-size: 1.05rem;
+            }
+
+            nav ul {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                list-style: none;
+                padding: 0.7rem 0;
+                margin: 0;
+            }
+            nav a {
+                font-weight: 600;
+                color: #0f172a;
+                padding: 0.55rem 0.9rem;
+                border-radius: 999px;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+            nav a::after {
+                content: "";
+                position: absolute;
+                left: 12px;
+                right: 12px;
+                bottom: 6px;
+                height: 2px;
+                border-radius: 2px;
+                background: linear-gradient(90deg, #0ea5e9, #0369a1);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.25s ease;
+            }
+            nav a:hover {
+                color: var(--brand-dark);
+            }
+            nav a:hover::after {
+                transform: scaleX(1);
+            }
+
+            /* Mobile dropdown */
+            .nav-select {
+                display: none;
+                width: 100%;
+                padding: 0.6rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                background: #fff;
+                font-weight: 600;
+                color: #0f172a;
+            }
+
+            /* Make header solid on tiny screens so blur doesn’t look gray */
+            /* expand the breakpoint where the header is fully opaque */
+            @media (max-width: 1024px) {
+                header {
+                    background: #fff;
+                    backdrop-filter: none;
+                }
+            }
+
+            /* Collapse links on small screens */
+            @media (max-width: 900px) {
+                nav {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    gap: 0.6rem;
+                    align-items: center;
+                }
+                .nav-select {
+                    display: block;
+                }
+                nav .nav-links {
+                    display: none;
+                }
+                .nav-cta {
+                    padding: 0.6rem 0.85rem;
+                }
+                .brand img {
+                    width: 34px;
+                    height: 34px;
+                }
+            }
+
+            /* ================== HERO (BLUR-FILL VIDEO) ================== */
+            .hero-video {
+                position: relative;
+                width: 100%;
+                /* use small/dynamic viewport & subtract the header height */
+                min-height: calc(100svh - var(--header-h));
+                height: auto;
+                overflow: hidden;
+                border-radius: 0 0 24px 24px;
+                background: #000;
+            }
+
+            /* fallback if svh isn’t supported */
+            @supports not (height: 1svh) {
+                .hero-video {
+                    min-height: calc(100vh - var(--header-h));
+                }
+            }
+            .hero-video .vid {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+            /* blurred background filler */
+            .hero-video .vid.bg {
+                object-fit: cover;
+                filter: blur(18px) brightness(0.78);
+                transform: scale(1.08);
+                z-index: 0;
+            }
+            /* crisp foreground, never stretched */
+            .hero-video .vid.fg {
+                width: min(1100px, 92vw);
+                height: auto;
+                object-fit: contain;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+            }
+            /* centered overlay text */
+            .hero-video .overlay-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                text-align: center;
+                color: #ffefd5;
+                text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+                animation: fadeOpacity 0.8s ease both;
+            }
+            .hero-logo {
+                width: 90px;
+                height: auto;
+                margin: 0 auto 1rem;
+                display: block;
+                filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+            }
+            .hero-video .overlay-text h1 {
+                font-family: "Playfair Display", serif;
+                font-size: clamp(3rem, 5vw + 1rem, 6rem);
+                color: #ffd580;
+                margin-bottom: 0.8rem;
+                letter-spacing: 0.5px;
+                line-height: 1.1;
+            }
+            .hero-video .overlay-text p {
+                font-family: "Inter", sans-serif;
+                font-size: clamp(1.2rem, 1.5vw + 0.6rem, 1.6rem);
+                color: #fff5e1;
+                opacity: 0.95;
+                font-weight: 500;
+            }
+            @keyframes fadeOpacity {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            @media (max-width: 768px) {
+                .hero-video {
+                    height: 80vh;
+                }
+                .hero-logo {
+                    width: 58px;
+                    margin: 0 auto 0.5rem;
+                }
+                .hero-video .overlay-text h1 {
+                    font-size: 2rem;
+                    line-height: 1.2;
+                    margin-bottom: 0.6rem;
+                }
+                .hero-video .overlay-text p {
+                    font-size: 1rem;
+                }
+            }
+
+            /* ================== HIGHLIGHTS & CTA ================== */
+            .features-title {
+                text-align: center;
+                letter-spacing: 0.12em;
+                font-weight: 800;
+                color: var(--ink);
+                margin-bottom: 1.8rem;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+            @media (max-width: 900px) {
+                .features-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .feature h3 {
+                text-align: center;
+                letter-spacing: 0.18em;
+                font-weight: 800;
+                margin: 0.9rem 0 0.6rem;
+            }
+            .feature p {
+                color: var(--muted);
+                text-align: center;
+            }
+            .feat-img {
+                width: 100%;
+                aspect-ratio: 4/3;
+                object-fit: cover;
+                border-radius: 12px;
+                box-shadow: var(--shadow);
+            }
+
+            .cta-book {
+                --overlay: rgba(0, 0, 0, 0.45);
+                position: relative;
+                min-height: 52vh;
+                background: center/cover no-repeat var(--bg-url);
+                border-radius: 24px;
+                margin: 2.4rem auto;
+                isolation: isolate;
+                overflow: hidden;
+            }
+            .cta-book::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), var(--overlay));
+                z-index: 0;
+            }
+            .cta-inner {
+                position: relative;
+                z-index: 1;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.8rem;
+                text-align: center;
+                color: #fff5e1;
+                padding: 2rem;
+                text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+            }
+            .cta-inner h2 {
+                font-family: "Playfair Display", serif;
+                font-size: clamp(2rem, 3vw + 1rem, 3.2rem);
+                color: #ffd580;
+            }
+            @media (max-width: 768px) {
+                .cta-book {
+                    min-height: 42vh;
+                    border-radius: 18px;
+                }
+            }
+
+            /* ================== SECTION SCAFFOLDING ================== */
+            section {
+                padding: 2.8rem 0;
+            }
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            .grid {
+                display: grid;
+                gap: 1rem;
+            }
+            .grid-2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            @media (max-width: 900px) {
+                .grid-2 {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .card {
+                background: #fff;
+                border: 1px solid #e2e8f0;
+                border-radius: 18px;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+            .map {
+                border: 0;
+                width: 100%;
+                height: 420px;
+                border-radius: 12px;
+            }
+
+            /* ================== MODERN SECTION HEADS ================== */
+            .section {
+                padding: 2.8rem 0;
+            }
+            .section-head {
+                text-align: center;
+                margin-bottom: 1.4rem;
+            }
+            .eyebrow {
+                display: inline-block;
+                letter-spacing: 0.16em;
+                font-weight: 800;
+                font-size: 0.78rem;
+                text-transform: uppercase;
+                color: #0369a1;
+                background: rgba(14, 165, 233, 0.08);
+                border: 1px solid rgba(14, 165, 233, 0.25);
+                padding: 0.35rem 0.6rem;
+                border-radius: 999px;
+                margin-bottom: 0.6rem;
+            }
+            .section-sub {
+                color: var(--muted);
+                max-width: 720px;
+                margin: 0.4rem auto 0;
+            }
+
+            /* ================== VIDEO CARD ================== */
+            .media-card {
+                position: relative;
+                border-radius: 18px;
+                padding: 10px;
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.35));
+                backdrop-filter: blur(6px);
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+            }
+            .media {
+                display: block;
+                width: 100%;
+                border-radius: 12px;
+                object-fit: cover;
+                aspect-ratio: 16/9;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+            }
+
+            /* ================== AMENITIES ================== */
+            .amenities-grid {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                gap: 0.9rem;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            @media (max-width: 900px) {
+                .amenities-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (max-width: 620px) {
+                .amenities-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .amenity {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.85rem 1rem;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                background: #fff;
+                box-shadow: var(--shadow);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            }
+            .amenity i {
+                color: #0ea5e9;
+                font-size: 1.1rem;
+                width: 1.2rem;
+                text-align: center;
+            }
+            .amenity:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 16px 40px rgba(2, 132, 199, 0.18);
+                border-color: #cfe8f6;
+            }
+
+            /* ================== CONTACT ================== */
+            .contact-card {
+                border-radius: 16px;
+                padding: 1.25rem;
+                background: #fff;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            }
+            .form-grid {
+                display: grid;
+                gap: 1rem;
+                grid-template-columns: 1fr 1fr;
+                margin-bottom: 1rem;
+            }
+            .form-grid .full {
+                grid-column: 1 / -1;
+            }
+            @media (max-width: 900px) {
+                .form-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .field-simple label {
+                display: block;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #0f172a;
+                margin-bottom: 0.35rem;
+            }
+            .field-simple input,
+            .field-simple textarea {
+                width: 100%;
+                padding: 0.9rem 0.95rem;
+                border: 1px solid #dbe3ef;
+                border-radius: 12px;
+                background: #fff;
+                font: inherit;
+                color: #0f172a;
+                outline: none;
+                box-shadow: none;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+            .field-simple textarea {
+                resize: vertical;
+            }
+            .field-simple input:focus,
+            .field-simple textarea:focus {
+                border-color: #0ea5e9;
+                box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+            }
+            .btn:focus-visible {
+                outline: none;
+                box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.22);
+            }
+
+            /* ================== GALLERY / LIGHTBOX ================== */
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 1rem;
+            }
+            .span-6 {
+                grid-column: span 6;
+            }
+            .span-4 {
+                grid-column: span 4;
+            }
+            .span-3 {
+                grid-column: span 3;
+            }
+            @media (max-width: 700px) {
+                .gallery {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .gallery > * {
+                    grid-column: span 1 !important;
+                }
+            }
+            .albums {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                margin: 0.5rem 0 1rem;
+            }
+            .chip {
+                border: 1px solid #e2e8f0;
+                border-radius: 999px;
+                padding: 0.45rem 0.8rem;
+                background: #fff;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .chip.active {
+                background: linear-gradient(90deg, #0ea5e9, #0369a1);
+                color: #fff;
+                border-color: transparent;
+            }
+            .hide {
+                display: none !important;
+            }
+
+            .lightbox {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 200;
+            }
+            .lightbox.open {
+                display: flex;
+            }
+            .lightbox img {
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 12px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            }
+            .arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #fff;
+                font-size: 2.5rem;
+                font-weight: bold;
+                cursor: pointer;
+                user-select: none;
+                padding: 10px;
+                transition: color 0.3s ease;
+                z-index: 210;
+            }
+            .arrow:hover {
+                color: #0ea5e9;
+            }
+            .arrow.left {
+                left: 40px;
+            }
+            .arrow.right {
+                right: 40px;
+            }
+
+            /* ================== FOOTER ================== */
+            footer {
+                background: #0b1220;
+                color: #cbd5e1;
+                padding: 2.4rem 0;
+                margin-top: 2rem;
+                font-size: 0.95rem;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                align-items: start;
+            }
+            .footer-left h3 {
+                color: #ffd580;
+                font-family: "Playfair Display", serif;
+                margin-bottom: 0.5rem;
+            }
+            .footer-left p {
+                color: #94a3b8;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            .footer-center h4 {
+                color: #ffd580;
+                margin-bottom: 0.6rem;
+                text-align: center;
+            }
+            .social-links {
+                display: flex;
+                gap: 0.9rem;
+                justify-content: center;
+            }
+            .social-links a {
+                color: #ffd580;
+                font-size: 1.5rem;
+                transition: all 0.35s ease;
+            }
+            .social-links a.insta:hover {
+                color: #e1306c;
+                text-shadow: 0 0 8px #e1306c, 0 0 15px #fd1d1d;
+                transform: translateY(-2px);
+            }
+            .social-links a.fb:hover {
+                color: #1877f2;
+                text-shadow: 0 0 8px #1877f2, 0 0 15px #42a5f5;
+                transform: translateY(-2px);
+            }
+            .social-links a.tiktok:hover {
+                color: #00f2ea;
+                text-shadow: 0 0 8px #00f2ea, 0 0 15px #ff0050;
+                transform: translateY(-2px);
+            }
+            .footer-right {
+                text-align: right;
+            }
+            .footer-right p {
+                margin: 0.3rem 0;
+            }
+            .credit {
+                color: #94a3b8;
+                font-size: 0.9rem;
+                margin-top: 0.4rem;
+            }
+            .credit strong {
+                color: #ffd580;
+            }
+            .credit a {
+                color: #ffd580;
+                margin-left: 0.4rem;
+                font-size: 1.2rem;
+                transition: all 0.35s ease;
+            }
+            .credit a.linkedin:hover {
+                color: #0a66c2;
+                text-shadow: 0 0 8px #0a66c2, 0 0 15px #33a2ff;
+                transform: translateY(-2px);
+            }
+            .credit a.github:hover {
+                color: #fff;
+                text-shadow: 0 0 8px #fff, 0 0 15px #999;
+                transform: translateY(-2px);
+            }
+            @media (max-width: 900px) {
+                .footer-grid {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
+                .footer-right {
+                    text-align: center;
+                }
+                .social-links {
+                    justify-content: center;
+                }
+            }
+
+            /* ================== MAP / MISC ================== */
+            .bullet {
+                margin: 0.25rem 0 0 1rem;
+                color: var(--muted);
+            }
+            .bullet li {
+                margin: 0.25rem 0;
+            }
+
+            .map-card {
+                padding: 0;
+                overflow: hidden;
+                box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+            }
+            @media (max-width: 700px) {
+                .map {
+                    height: 360px;
+                }
+            }
+
+            /* --- Kill accidental sticky on content (keep header sticky) --- */
+            .section-head,
+            .media-card,
+            .contact-card,
+            .info-card,
+            .card,
+            .features-grid,
+            .cta-book,
+            .gallery figure,
+            .amenity,
+            .features-title {
+                position: static !important;
+                top: auto !important;
+            }
+            .sticky {
+                position: static !important;
+                top: auto !important;
+            }
+            /* =========================
+   MOBILE POLISH (drop-in)
+   ========================= */
+
+            /* ===== MOBILE BURGER & PANEL ===== */
+            .nav-select {
+                display: none !important;
+            } /* kill the old dropdown */
+
+            /* Make the burger lines thicker and always visible */
+            .nav-toggle {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                border: 1px solid #e2e8f0;
+                background: #fff;
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column; /* <-- add this */
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+                font-size: 0;
+                line-height: 0;
+                display: none;
+            }
+
+            .nav-toggle span {
+                display: block;
+                width: 20px;
+                height: 2.5px;
+                background: #0f172a;
+                border-radius: 2px;
+                transition: 0.25s transform, 0.25s opacity;
+            }
+            .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .nav-panel {
+                position: fixed;
+                top: var(--header-h, 72px);
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid #e2e8f0;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+                display: grid;
+                gap: 0.25rem;
+                padding: 0.75rem 0.9rem;
+                transform: translateY(-10px);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.22s ease, opacity 0.22s ease;
+                z-index: 98; /* just under header (which is 100) */
+            }
+            .nav-panel a {
+                padding: 0.75rem 0.6rem;
+                border-radius: 10px;
+                font-weight: 700;
+                color: #0f172a;
+            }
+            .nav-panel a:active {
+                background: #f1f5f9;
+            }
+
+            .nav-panel.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+            @media (min-width: 901px) {
+                #nav-panel {
+                    display: none !important;
+                }
+            }
+            @media (max-width: 900px) {
+                /* if you changed nav to grid earlier, this keeps it tidy on mobile */
+                nav {
+                    display: flex !important;
+                    align-items: center;
+                    gap: 0.6rem;
+                }
+                .nav-links,
+                .nav-cta,
+                .nav-select {
+                    display: none !important;
+                }
+                .nav-toggle {
+                    display: flex;
+                    margin-left: auto;
+                } /* <-- shows only <900px */
+            }
+            /* optional: lock scroll when menu open */
+            .no-scroll {
+                overflow: hidden;
+            }
+            /* ===== Burger panel booking button ===== */
+            .nav-panel .btn-book {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0.8rem 0.95rem;
+                border-radius: 12px;
+                font-weight: 800;
+                background: linear-gradient(90deg, #0ea5e9, #0369a1);
+                color: #fff;
+                box-shadow: 0 10px 24px rgba(2, 132, 199, 0.25);
+                margin-bottom: 0.35rem;
+            }
+            .nav-panel .btn-book:hover {
+                filter: brightness(1.05);
+            }
+
+            /* ===== Hero overlay booking button ===== */
+            .btn-hero-book {
+                margin-top: 1rem;
+                background: linear-gradient(90deg, #0ea5e9, #0369a1);
+                color: #fff;
+                border-radius: 14px;
+                font-weight: 800;
+                box-shadow: 0 16px 40px rgba(2, 132, 199, 0.28);
+            }
+            .btn-hero-book:hover {
+                filter: brightness(1.06);
+            }
+
+            /* Keep top nav button hidden on mobile so header stays clean */
+            @media (max-width: 900px) {
+                .nav-cta {
+                    display: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="container">
+                <!-- Brand -->
+                <a href="#home" class="brand">
+                    <img src="images/pr_logo.jpg" alt="Villa Verde logo" />
+                    <span>Villa Verde</span>
+                </a>
+
+                <!-- Links (desktop) -->
+                <ul class="nav-links">
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#space">The space</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Quick message</a></li>
+                </ul>
+
+                <!-- CTA -->
+                <a class="btn nav-cta" href="https://airbnb.com/rooms/your-listing" target="_blank">Book on Airbnb</a>
+
+                <!-- Mobile compact -->
+                <!-- inside <nav> (after the CTA button) -->
+                <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            </nav>
+        </header>
+        <!-- directly after </header> -->
+        <!-- directly after </header> -->
+        <div class="nav-panel" id="nav-panel" hidden>
+            <!-- booking button in the panel -->
+            <a class="btn btn-book" href="https://airbnb.com/rooms/your-listing" target="_blank" rel="noopener"> <i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book on Airbnb </a>
+
+            <a href="#video">Video</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#space">The space</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Quick message</a>
+        </div>
+
+        <!-- HERO with blur-fill video -->
+        <div class="hero-video">
+            <!-- Blurred fill (same source) -->
+            <video class="vid bg" autoplay loop muted playsinline poster="images/pr_image1.jpg">
+                <source src="videos/PR_VID1.mp4" type="video/mp4" />
+            </video>
+
+            <!-- Foreground, non-stretched video -->
+            <video class="vid fg" autoplay loop muted playsinline poster="images/pr_image1.jpg">
+                <source src="videos/PR_VID1.mp4" type="video/mp4" />
+            </video>
+
+            <!-- Overlay text + logo (not centered anymore) -->
+            <div class="overlay-text">
+                <img src="images/pr_logo.jpg" alt="Villa Verde logo" class="hero-logo" />
+                <h1>Welcome to Villa Verde</h1>
+                <p>Experience the Scenic Views of El Yunque Rainforest</p>
+                <a class="btn btn-lg btn-hero-book" href="https://airbnb.com/rooms/your-listing" target="_blank" rel="noopener">
+                    Book Now
+                </a>
+            </div>
+        </div>
+        <!-- HIGHLIGHTS (between HERO and #video) -->
+        <section id="highlights" class="features container">
+            <h2 class="features-title">PLAN YOUR NEXT VACATION TO PUERTO RICO WITH VILLA VERDE</h2>
+
+            <div class="features-grid">
+                <article class="feature">
+                    <img class="feat-img" src="images/pr_uhhh.jpg" alt="Mountain and ocean view from the villa" />
+                    <h3>ESCAPE REALITY</h3>
+                    <p>Only ~25 minutes from SJU, enjoy sweeping views across San Juan, Isla Verde, Loíza, Canóvanas and Río Grande—right from the terrace.</p>
+                </article>
+
+                <article class="feature">
+                    <img class="feat-img" src="images/PR_image1.jpg" alt="Sunset by the pool" />
+                    <h3>YOUR OWN OASIS</h3>
+                    <p>Freshly updated bedrooms and baths, fast Wi-Fi, A/C in every room, and private outdoor spaces to unwind morning or night.</p>
+                </article>
+
+                <article class="feature">
+                    <img class="feat-img" src="images/PR_image18.jpg" alt="Infinity-style pool facing the hills" />
+                    <h3>SCENIC VIEWS</h3>
+                    <p>Wake up to cool mountain breezes and golden sunsets over the foothills—your perfect base for beaches and El Yunque.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- BOOK NOW CTA (image background with centered button) -->
+        <section class="cta-book" aria-label="Book now" style="--bg-url: url('images/pr_image16.jpg');">
+            <div class="cta-inner">
+                <h2>Ready to stay?</h2>
+                <p>Secure your dates on Airbnb and experience Villa Verde in person.</p>
+                <a class="btn btn-lg" href="https://airbnb.com/rooms/your-listing" target="_blank" rel="noopener">Book on Airbnb</a>
+            </div>
+        </section>
+
+        <main class="container">
+            <section id="video" class="section">
+                <div class="container">
+                    <header class="section-head">
+                        <span class="eyebrow">Take a look</span>
+                        <h2>See the Spot</h2>
+                        <p class="section-sub">A quick vibe check of the views, light, and neighborhood energy.</p>
+                    </header>
+
+                    <div class="media-card">
+                        <video class="media" controls playsinline preload="metadata" poster="images/pr_image2.jpg">
+                            <!-- make sure this relative path is correct -->
+                            <source src="videos/villaPRvid.mp4" type="video/mp4" />
+                            <!-- optional WebM fallback if you export one -->
+                            <!-- <source src="assets/videos/spot.webm" type="video/webm"> -->
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AMENITIES -->
+            <section id="amenities" class="section">
+                <div class="container">
+                    <header class="section-head">
+                        <span class="eyebrow">What’s included</span>
+                        <h2>Amenities</h2>
+                    </header>
+
+                    <ul class="amenities-grid">
+                        <li class="amenity"><i class="fa-solid fa-wifi"></i><span>Fast Wi-Fi (200 Mbps)</span></li>
+                        <li class="amenity"><i class="fa-solid fa-bed"></i><span>4 bedrooms</span></li>
+                        <li class="amenity"><i class="fa-solid fa-bath"></i><span>2 bathrooms</span></li>
+                        <li class="amenity"><i class="fa-solid fa-kitchen-set"></i><span>Full kitchen & cookware</span></li>
+                        <li class="amenity"><i class="fa-solid fa-shirt"></i><span>Washer • Dryer</span></li>
+                        <li class="amenity"><i class="fa-solid fa-tv"></i><span>Smart TV • Netflix</span></li>
+                        <li class="amenity"><i class="fa-solid fa-square-parking"></i><span>Free parking</span></li>
+                        <li class="amenity"><i class="fa-solid fa-key"></i><span>Self check-in (lockbox)</span></li>
+                        <li class="amenity"><i class="fa-solid fa-water-ladder"></i><span>Patio • Balcony • Pool • Terrace</span></li>
+                        <!-- add/remove as needed -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- THE SPACE with photos -->
+            <section id="space" class="container">
+                <header class="section-head">
+                    <span class="eyebrow">Inside & outside</span>
+                    <h2>The space</h2>
+                    <p class="section-sub">Comfortable rooms, breezy outdoor areas, and everything you need to relax.</p>
+                </header>
+                <div class="albums" id="albums">
+                    <button class="chip active" data-filter="all">All</button>
+                    <button class="chip" data-filter="bedroom">Bedrooms</button>
+                    <button class="chip" data-filter="bathroom">Bathrooms</button>
+                    <button class="chip" data-filter="kitchen">Kitchen</button>
+                    <button class="chip" data-filter="outdoor">Outdoors</button>
+                </div>
+                <div class="gallery">
+                    <figure class="span-6" data-group="bedroom">
+                        <img src="images/pr_room1.jpg" alt="Bedroom 1 — king bed" />
+                        <figcaption>Bedroom 1</figcaption>
+                    </figure>
+                    <figure class="span-6" data-group="bedroom">
+                        <img src="images/pr_room2.png" alt="Bedroom 2 — queen bed" />
+                        <figcaption>Bedroom 2</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="bedroom">
+                        <img src="images/pr_room3.jpg" alt="Bedroom 3" />
+                        <figcaption>Bedroom 3</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="bedroom">
+                        <img src="images/pr_room4.jpg" alt="Bedroom 4" />
+                        <figcaption>Bedroom 4</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="bedroom">
+                        <img src="images/pr_room5.jpg" alt="Bedroom 5" />
+                        <figcaption>Bedroom 5</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images5.jpg" alt="living room 1" />
+                        <figcaption>living room 1</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images8.jpg" alt="living room 1" />
+                        <figcaption>living room 1</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images6.jpg" alt="Dinning area" />
+                        <figcaption>Dinning area</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images10.jpg" alt="Full kitchen 1" />
+                        <figcaption>Full kitchen 1</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images7.jpg" alt="Full kitchen 2" />
+                        <figcaption>Full kitchen 2</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images9.jpg" alt="living room 2" />
+                        <figcaption>living room 2</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="kitchen">
+                        <img src="images/pr_images11.jpg" alt="living room 2" />
+                        <figcaption>living room 2</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="bathroom">
+                        <img src="images/PR_bthrm1.jpg" alt="Bathroom 1" />
+                        <figcaption>Bathroom 1</figcaption>
+                    </figure>
+                    <figure class="span-4" data-group="bathroom">
+                        <img src="images/pr_bthrm2.jpg" alt="Bathroom 2" />
+                        <figcaption>Bathroom 2</figcaption>
+                    </figure>
+                    <figure class="span-6" data-group="outdoor">
+                        <img src="images/pr_images12.jpg" alt="Balcony" />
+                        <figcaption>Balcony</figcaption>
+                    </figure>
+                    <figure class="span-6" data-group="outdoor">
+                        <img src="images/pr_images13.jpg" alt="Balcony" />
+                        <figcaption>Balcony</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="outdoor">
+                        <img src="images/pr_images14.jpg" alt="Patio" />
+                        <figcaption>Patio</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="outdoor">
+                        <img src="images/pr_image15.jpg" alt="pool" />
+                        <figcaption>pool</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="outdoor">
+                        <img src="images/pr_image16.jpg" alt="pool" />
+                        <figcaption>pool</figcaption>
+                    </figure>
+                    <figure class="span-3" data-group="outdoor">
+                        <img src="images/pr_image17.jpg" alt="Terrace at sunset" />
+                        <figcaption>pool</figcaption>
+                    </figure>
+                    <figure class="span-6" data-group="outdoor">
+                        <img src="images/pr_pool.jpg" alt="Patio with seating" />
+                        <figcaption>pool</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- LOCATION -->
+            <section id="location" class="section">
+                <div class="container">
+                    <header class="section-head">
+                        <span class="eyebrow">Where you’ll be</span>
+                        <h2>Location</h2>
+                        <p class="section-sub">Peaceful hillside with quick access to beaches, El Yunque, and local cafés.</p>
+                    </header>
+
+                    <!-- Summary + details (kept) -->
+                    <article class="info-card" style="margin-bottom: 1rem;">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3>At a glance</h3>
+                        <ul class="bullet">
+                            <li>~25–35 min to San Juan (SJU)</li>
+                            <li>Short drive to beaches & restaurants</li>
+                            <li>Grocery & pharmacy 10–15 minutes</li>
+                            <li>Exact address shared after booking</li>
+                        </ul>
+                    </article>
+
+                    <!-- Classic wide map (like before) -->
+                    <div class="map-card card">
+                        <iframe class="map" loading="lazy" title="Villa Verde map" src="https://www.google.com/maps?q=18.365,-65.766&hl=en&z=12&output=embed"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUICK MESSAGE -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <header class="section-head">
+                        <span class="eyebrow">Questions?</span>
+                        <h2>Quick message</h2>
+                        <p class="section-sub">Ask about dates, the neighborhood, or anything else — we reply fast.</p>
+                    </header>
+
+                    <form class="contact-card" onsubmit="event.preventDefault(); alert('Thanks! We will reply soon.');">
+                        <div class="form-grid">
+                            <div class="field-simple">
+                                <label for="name">Your name</label>
+                                <input id="name" type="text" placeholder="John Doe" required />
+                            </div>
+                            <div class="field-simple">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="you@example.com" required />
+                            </div>
+                            <div class="field-simple full">
+                                <label for="msg">Message</label>
+                                <textarea id="msg" rows="5" placeholder="Dates, how many guests, any questions…" required></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-lg" type="submit">Send message</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container footer-grid">
+                <!-- Left column -->
+                <div class="footer-left">
+                    <h3>Villa Verde, Puerto Rico</h3>
+                    <p>Stay. Relax. Discover the beauty of El Yunque and the island breeze.</p>
+                </div>
+
+                <!-- Center column -->
+                <div class="footer-center">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/yourairbnb" target="_blank" aria-label="Instagram" class="insta">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/yourairbnb" target="_blank" aria-label="Facebook" class="fb">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@yourairbnb" target="_blank" aria-label="TikTok" class="tiktok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right column -->
+                <div class="footer-right">
+                    <p>© <span id="year"></span> Villa Verde Puerto Rico</p>
+                    <p class="credit">
+                        Website designed and coded by <strong>John Meraz</strong>
+                        <a href="https://www.linkedin.com/in/john-meraz-jpm" target="_blank" aria-label="LinkedIn" class="linkedin">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Lightbox modal with arrows -->
+        <div class="lightbox" id="lightbox">
+            <span class="arrow left" id="prev">❮</span>
+            <img src="" alt="Expanded photo" />
+            <span class="arrow right" id="next">❯</span>
+        </div>
+
+        <script>
+            const $ = (sel, root = document) => root.querySelector(sel);
+            const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+            (() => {
+                const y = $("#year");
+                if (y) y.textContent = new Date().getFullYear();
+            })();
+
+            function setHeaderOffset() {
+                const header = $("header");
+                const h = header?.offsetHeight || 0;
+                // expose real header height for CSS (used by: calc(100svh - var(--header-h)) etc.)
+                document.documentElement.style.setProperty("--header-h", `${h}px`);
+            }
+            addEventListener("load", setHeaderOffset);
+            addEventListener("resize", setHeaderOffset);
+            (() => {
+                const header = $("header");
+                if (header && "ResizeObserver" in window) {
+                    new ResizeObserver(setHeaderOffset).observe(header);
+                }
+            })();
+
+            (() => {
+                const sel = $(".nav-select");
+                if (!sel) return;
+                sel.addEventListener("change", (e) => {
+                    const v = e.target.value;
+                    if (!v) return;
+                    if (v.startsWith("http")) {
+                        location.href = v;
+                        return;
+                    }
+                    const target = $(v);
+                    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+            })();
+
+            (() => {
+                const lightbox = $("#lightbox");
+                const imgEl = lightbox?.querySelector("img");
+                const imgs = $$("#space .gallery img");
+                if (!lightbox || !imgEl || !imgs.length) return;
+
+                let idx = 0;
+                function openAt(i) {
+                    idx = i;
+                    imgEl.src = imgs[idx].src;
+                    lightbox.classList.add("open");
+                }
+                function next() {
+                    idx = (idx + 1) % imgs.length;
+                    imgEl.src = imgs[idx].src;
+                }
+                function prev() {
+                    idx = (idx - 1 + imgs.length) % imgs.length;
+                    imgEl.src = imgs[idx].src;
+                }
+
+                imgs.forEach((im, i) => im.addEventListener("click", () => openAt(i)));
+                $("#next")?.addEventListener("click", next);
+                $("#prev")?.addEventListener("click", prev);
+
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox) lightbox.classList.remove("open");
+                });
+                addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") lightbox.classList.remove("open");
+                });
+            })();
+
+            (() => {
+                const chips = $$("#albums .chip");
+                const figs = $$("#space .gallery figure");
+                if (!chips.length || !figs.length) return;
+
+                chips.forEach((chip) =>
+                    chip.addEventListener("click", () => {
+                        chips.forEach((c) => c.classList.remove("active"));
+                        chip.classList.add("active");
+                        const group = chip.dataset.filter;
+                        figs.forEach((f) => {
+                            f.classList.remove("hide");
+                            if (group !== "all" && f.dataset.group !== group) f.classList.add("hide");
+                        });
+                    })
+                );
+            })();
+
+            // === Mobile hamburger ===
+            (() => {
+                const btn = document.querySelector(".nav-toggle");
+                const panel = document.getElementById("nav-panel");
+                if (!btn || !panel) return;
+
+                function openPanel() {
+                    btn.setAttribute("aria-expanded", "true");
+                    panel.hidden = false; // allow transition
+                    panel.offsetHeight; // force reflow
+                    panel.classList.add("open");
+                    document.documentElement.classList.add("no-scroll");
+                    document.body.classList.add("no-scroll");
+                }
+                function closePanel() {
+                    btn.setAttribute("aria-expanded", "false");
+                    panel.classList.remove("open");
+                    document.documentElement.classList.remove("no-scroll");
+                    document.body.classList.remove("no-scroll");
+                    setTimeout(() => {
+                        if (!panel.classList.contains("open")) panel.hidden = true;
+                    }, 240);
+                }
+
+                btn.addEventListener("click", () => {
+                    const expanded = btn.getAttribute("aria-expanded") === "true";
+                    expanded ? closePanel() : openPanel();
+                });
+
+                // Close on any in-panel link click (hash links + external)
+                panel.addEventListener("click", (e) => {
+                    const a = e.target.closest("a");
+                    if (!a) return;
+
+                    // close the panel first
+                    closePanel();
+
+                    // smooth scroll for in-page anchors
+                    const href = a.getAttribute("href") || "";
+                    if (href.startsWith("#")) {
+                        const target = document.querySelector(href);
+                        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        e.preventDefault();
+                    }
+                    // external links (Airbnb) just follow default behavior
+                });
+
+                // Close on Escape
+                window.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") closePanel();
+                });
+            })();
+        </script>
+    </body>
+</html>
